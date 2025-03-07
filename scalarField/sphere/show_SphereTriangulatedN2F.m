@@ -1,7 +1,7 @@
 %%% test of the nf2ff transformation from a triangulated patches sphere 
 %%% surrounding a planar array
-clear all; clc;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 arrayPos = buildArray(1, 3, .5, 5, .5);
 %%--- sphere

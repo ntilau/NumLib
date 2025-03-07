@@ -1,7 +1,7 @@
 %%% check for Vector N2F implementation
 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 % ----- load electrical parameters
 [z0,k0,lambda0] = getFreeSpaceElectricalParams(1e9 , 0);

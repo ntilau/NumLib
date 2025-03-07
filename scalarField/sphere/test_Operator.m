@@ -1,12 +1,12 @@
 %%% low-rank approximation of the N2F operator for a bounding sphere 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 arrayPos = buildArray(1, 9, .5, 1, .5);
 radius = getSphRadius(1, arrayPos, .5);
 [spherePos, dS, thetaNF, phiNF, mSize] = buildSphere(radius, .1, 3, 3, 1);
 [Rmag, NdotRV, n] = getSphVectors(arrayPos, spherePos);
-excitPhasor = sf_Excitations(1, arrayPos, 0, 0);
+excitPhasor = sf_excitations(1, arrayPos, 0, 0);
 [psi, delPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% nf2ff
 dthetaFF = 1; % ff pattern resolution [°]
@@ -34,9 +34,9 @@ ylabel('DFT spectrum', 'FontSize', 12)
 zlabel('Coefficient amplitude [dB]', 'FontSize', 12)
 axis tight
 filename = 'DFTspectrum';
-print('-depsc', filename);
-system(['epstopdf ',filename, '.eps']);
-system(['del ',filename, '.eps']);
+print('-dpdf', filename);
+%system(['epstopdf ',filename, '.eps']);
+%system(['del ',filename, '.eps']);
 
 % --- pattern plot
 gain = sf_computeGain(fPsi);

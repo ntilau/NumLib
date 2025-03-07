@@ -1,7 +1,7 @@
 %%% check for Vector N2F implementation considering operators
 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 % ----- load electrical parameters

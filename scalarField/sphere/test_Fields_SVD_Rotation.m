@@ -1,7 +1,7 @@
 %%% low-rank approximation of the near fields with fields rotation around y
 %%% axis
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic();
 
 dirToTest = 23.3251;
@@ -63,7 +63,7 @@ for i=initial:length(nbrVectors)
     [spherePos, dS, thetaNF, phiNF, mSize] = buildSphere(radius, .1, ...
       3, 3, 1, angle(j), [0 1 0]);
     [Rmag, NdotRV] = getSphVectors(arrayPos, spherePos);
-    excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0 );
+    excitPhasor = sf_excitations(1, arrayPos, angle(j), 0 );
     [spanPsi(:,j), spanDelPsi(:,j)] = ...
       sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
     

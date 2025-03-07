@@ -1,7 +1,7 @@
 %%% low-rank approximation of the near fields : inverse linear scan angle 
 %%% space selection 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic();
 
 dirToTest = 23.3251;
@@ -10,7 +10,7 @@ arrayPos = buildArray(1, nbrElems_x, .5, 1, .5);
 radius = getSphRadius(1, arrayPos, .5);
 [spherePos, dS, thetaNF, phiNF, mSize] = buildSphere(radius, .1, 3, 3, 1);
 [Rmag, NdotRV, n] = getSphVectors(arrayPos, spherePos);
-excitPhasor = sf_Excitations(1, arrayPos, dirToTest, 0);
+excitPhasor = sf_excitations(1, arrayPos, dirToTest, 0);
 [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% ----- reference for the tested angle
 thetaFF = deg2rad(-90:1:90);
@@ -45,7 +45,7 @@ for i=1:length(nbrVectors)
     
   for j=colspanIdx:length(angle)
     fprintf('--> angle : (%d)%.4g\n',j,angle(j));
-    excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0);
+    excitPhasor = sf_excitations(1, arrayPos, angle(j), 0);
     [spanPsi(:,j), spanDelPsi(:,j)] = ...
       sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
   end

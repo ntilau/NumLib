@@ -1,6 +1,6 @@
 %%% check the error committed for several sampling resolutions
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 arrayPos = buildArray(1, 3, .5, 5, .5);
 

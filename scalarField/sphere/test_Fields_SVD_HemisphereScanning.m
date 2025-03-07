@@ -1,6 +1,6 @@
 %%% test of the nf2ff transformation from a sphere 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 arrayPos = buildArray(1, 3, .5, 5, .5);

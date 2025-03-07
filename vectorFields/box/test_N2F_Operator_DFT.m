@@ -1,8 +1,8 @@
 %%% check for Vector N2F implementation with DFT-truncation of the
 %%% operators
 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 % ----- load electrical parameters

@@ -1,7 +1,7 @@
 %%% test of the near field to far field transformation from a bounding 
 %%% sphere 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 %%--- params for planar array of point sources on XY plane
 lambda = 1;

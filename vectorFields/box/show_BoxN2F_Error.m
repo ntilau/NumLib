@@ -1,7 +1,7 @@
 %%% Check of the error due to numerical integration of the near fields in the
 %%% vector Huygen's principle
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 %%--- electrical parameters
 [z0,k0,lambda0] = getFreeSpaceElectricalParams(1e9 , 0);

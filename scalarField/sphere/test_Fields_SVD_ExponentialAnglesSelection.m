@@ -1,6 +1,6 @@
 %%% low-rank approximation of near fields: exponential angle selection
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 dirToTest = 23.3251;
