@@ -33,10 +33,8 @@ xlabel('Sphere samples', 'FontSize', 12)
 ylabel('DFT spectrum', 'FontSize', 12)
 zlabel('Coefficient amplitude [dB]', 'FontSize', 12)
 axis tight
-filename = 'DFTspectrum';
-print('-dpdf', filename);
-%system(['epstopdf ',filename, '.eps']);
-%system(['del ',filename, '.eps']);
+printEPS('','operatorSVD');
+
 
 % --- pattern plot
 gain = sf_computeGain(fPsi);

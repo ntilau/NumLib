@@ -126,6 +126,6 @@ end
 fprintf('Reference :\n');
 refError = getL2error(ftPsi, ftPsiRef);
 plotSVDerror(sPsi, nbrVectors, nError, fError, fRefError, nbrElems_x, false);
-printEPS('',['SVDerrorExpRotated']);
+% printEPS('',['SVDerrorExpRotated']);
 
 fprintf('\nTotal computation time = %2.4g s\n', toc(tStart));

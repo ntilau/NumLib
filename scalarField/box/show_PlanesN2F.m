@@ -1,7 +1,7 @@
 %%% Near field to far field transformation from the top and bottom planes 
 %%% of a box encompassing a planar array of point sources
-clear all; close all; clc;
-addpath('..\..\matlabLib\');
+clear; close all; clc;
+addpath('../../matlabLib/');
 
 %%--- params
 % c0 = 299792458;
@@ -31,7 +31,7 @@ arrayPos = buildArray(lambda, nbrElems_x, WLspacing_x, ...
 %%---
 steering_t = 0; % [°]
 steering_p = 0; % [°]
-excitPhasor = sf_Excitations(lambda, arrayPos, steering_t, steering_p );
+excitPhasor = sf_excitations(lambda, arrayPos, steering_t, steering_p );
 [psi, delPsi] = sf_nfSolver(lambda, excitPhasor, Rmag, NdotRV);
 
 % sf_plotBoxNF(mSize, boxPos, psi, '')

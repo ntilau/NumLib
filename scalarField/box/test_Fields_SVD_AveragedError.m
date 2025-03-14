@@ -1,7 +1,7 @@
 %%% low-rank approximation - spanning space angles selection for low
 %%% average error
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; close all; clc;
+addpath('../../matlabLib/');
 tStart = tic;
 
 arrayPos = buildArray(1, 21, .5, 5, .5);
@@ -25,7 +25,7 @@ for stAng=1:(nbrVectors-1)
   
   % select test angle in the middle of the chosen spanning angles
   dirToTest = angles(stAng) + (angles(stAng+1)-angles(stAng))/2;
-  excitPhasor = sf_Excitations(1, arrayPos, dirToTest, 0 );
+  excitPhasor = sf_excitations(1, arrayPos, dirToTest, 0 );
   [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
   
   thetaFF = deg2rad(-90:.5:90);
@@ -57,7 +57,7 @@ for stAng=1:(nbrVectors-1)
 
     for j=colspanIdx:length(angle)
       fprintf('--> angle : (%d)%.4g\n',j,angle(j));
-      excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0 );
+      excitPhasor = sf_excitations(1, arrayPos, angle(j), 0 );
       [spanPsi(:,j), spanDelPsi(:,j)] = ...
         sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
     end
@@ -118,6 +118,6 @@ axis([0 nbrVectors v(3) v(4)]);
 xlabel('Tested direction number');
 ylabel('Relative error');
 legend('n.f. error', 'f.f. error');
-printEPS('','errorAvg');
+%printEPS('','errorAvg');
 
 fprintf('\nTotal computation time = %2.4g s\n', toc(tStart));

@@ -1,6 +1,6 @@
 %%% Near field to far field transformation from a bounding box
-clear all; close all; clc;
-addpath('..\..\matlabLib\');
+clear; close all; clc;
+addpath('../../matlabLib/');
 
 %%--- params
 % c0 = 299792458;

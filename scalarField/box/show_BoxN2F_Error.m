@@ -1,6 +1,6 @@
 %%% Near field to far field transformation from a bounding box
-clear all; close all; clc;
-addpath('..\..\matlabLib\');
+clear; close all; clc;
+addpath('../../matlabLib/');
 arrayPos = buildArray(1, 9, .5, 1, .5);
 
 points = 5;
@@ -17,7 +17,7 @@ for i=1:points
     buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
     xPts, yPts, zPts, 1, 0, 0);
   [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-  excitPhasor = sf_Excitations(1, arrayPos, 0, 0 );
+  excitPhasor = sf_excitations(1, arrayPos, 0, 0 );
   [psi, delPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
   dthetaFF = 1;
   thetaFF = deg2rad(-90:dthetaFF:90);

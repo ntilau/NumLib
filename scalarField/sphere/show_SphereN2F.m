@@ -11,7 +11,7 @@ nbrElems_y = 5; % analog on y
 WLspacing_y = .5; % analog on y
 
 %%--- nf Sphere params
-flag = 1; % 0: dThetaNF-dPhiNF  1: sampling resolution 2: for nf plots 
+flag = 0; % 0: dThetaNF-dPhiNF  1: sampling resolution 2: for nf plots 
           % n.b. 2: induces errors in the n2f computation
 sphSmplRes = .05*lambda; % sampling resolution on the sphere -> derives the
                         % angle resolution dThetaNF and dPhiNF
@@ -26,7 +26,7 @@ radius = getSphRadius(lambda, arrayPos, ext);
 [spherePos, dS, thetaNF, phiNF, matrixSize] = ...
   buildSphere(radius, sphSmplRes, dThetaNF, dPhiNF, flag);
 [Rmag, NdotRV, n] = getSphVectors(arrayPos, spherePos);
-% plotSphGeom(matrixSize, arrayPos, spherePos);
+plotSphGeom(matrixSize, arrayPos, spherePos);
 
 %%--- nf
 steering_t=45;
