@@ -1,6 +1,6 @@
 %%% low-rank approximation of the near fields
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 dirToTest = 23.3251;
@@ -11,7 +11,7 @@ arrayPos = buildArray(1, 21, .5, 5, .5);
   buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
   xPts, yPts, zPts, 1, 0, 0);
 [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-excitPhasor = sf_Excitations(1, arrayPos, dirToTest, 0);
+excitPhasor = sf_excitations(1, arrayPos, dirToTest, 0);
 [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% ----- reference for the tested angle
 thetaFF = deg2rad(-90:1:90);
@@ -40,7 +40,7 @@ for i=1:length(nbrVectors)
   fprintf('--> angles : ');
 
   for j=colspanIdx:length(angle)
-    excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0 );
+    excitPhasor = sf_excitations(1, arrayPos, angle(j), 0 );
     [spanPsi(:,j), spanDelPsi(:,j)] = ...
       sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
     fprintf('(%d)%.4g ',j,angle(j));

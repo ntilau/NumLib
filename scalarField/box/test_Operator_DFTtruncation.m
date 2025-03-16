@@ -1,6 +1,6 @@
 %%% DFT-truncation of the near to far field operator
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 nbrElems_x = 9; % nbr of point sources for a linear array
 N = 300; % nbr look angle samples - need oversampling to avoid aliasing !
@@ -13,7 +13,7 @@ arrayPos = buildArray(1, nbrElems_x, .5, 1, .5);
   buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
   xPts, yPts, zPts, 1, 0, 0);
 [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-excitPhasor = sf_Excitations(1, arrayPos, 0, 0);
+excitPhasor = sf_excitations(1, arrayPos, 0, 0);
 [psi, delPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% nf2ff operator and ff reference
 thetaFF = linspace(0, 2*pi*(N-1)/N,N);
@@ -70,4 +70,4 @@ xlabel('No of DFT coefficients', 'FontSize', 12)
 ylabel('Relative Error', 'FontSize', 12)
 legend('N2F', 'Direct');
 axis('tight');
-printEPS('',['errorDFT',num2str(nbrElems_x)]);
+% printEPS('',['errorDFT',num2str(nbrElems_x)]);

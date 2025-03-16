@@ -1,6 +1,6 @@
 %%% low-rank approximation of near fields: exponential angle selection
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 dirToTest = 23.3251;
@@ -12,7 +12,7 @@ arrayPos = buildArray(1, nbrElems_x, .5, 5, .5);
   buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
   xPts, yPts, zPts, 1, 0, 0);
 [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-excitPhasor = sf_Excitations(1, arrayPos, dirToTest, 0);
+excitPhasor = sf_excitations(1, arrayPos, dirToTest, 0);
 [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% ----- reference for the tested angle
 thetaFF = deg2rad(-90:1:90);
@@ -51,7 +51,7 @@ for i=initial:length(nbrVectors)
   
   for j=colspanIdx:length(angle)
     fprintf('--> angle : (%d)%.4g\n',j,angle(j));
-    excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0 );
+    excitPhasor = sf_excitations(1, arrayPos, angle(j), 0 );
     [spanPsi(:,j), spanDelPsi(:,j)] = ...
       sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
   end
@@ -89,6 +89,6 @@ end
 fprintf('Reference :\n');
 refError = getL2error(ftPsi, ftPsiRef);
 plotSVDerror(sPsi, nbrVectors, nError, fError, fRefError, nbrElems_x, false);
-printEPS('','SVDerrorExp_33');
+% printEPS('','SVDerrorExp_33');
 
 fprintf('\nTotal computation time = %2.4g s\n', toc(tStart));

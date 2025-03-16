@@ -1,7 +1,7 @@
 %%% low-rank approximation of near fields: exponential angle selection and
 %%% truncation of the basis
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 dirToTest = 23.3251;
@@ -13,7 +13,7 @@ arrayPos = buildArray(1, 21, .5, 5, .5);
   buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
   xPts, yPts, zPts, 1, 0, 0);
 [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-excitPhasor = sf_Excitations(1, arrayPos, dirToTest, 0);
+excitPhasor = sf_excitations(1, arrayPos, dirToTest, 0);
 [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 %% ----- reference for the tested angle
 thetaFF = deg2rad(-90:1:90);
@@ -30,7 +30,7 @@ range = 90;
 nbrVec = [17 33];
 for nbrVecIdx = 1:length(nbrVec)
   maxNbrVects = nbrVec(nbrVecIdx);
-  [angles, nbrVectors] = getSpanningangles(maxNbrVects, range);
+  [angles, nbrVectors] = getSpanningAngles(maxNbrVects, range);
 
   spanPsi = zeros(size(boxPos,2),length(angles));
   spanDelPsi = spanPsi;
@@ -55,7 +55,7 @@ for nbrVecIdx = 1:length(nbrVec)
 
     for j=colspanIdx:length(angle)
       fprintf('--> angle : (%d)%.4g\n',j,angle(j));
-      excitPhasor = sf_Excitations(1, arrayPos, angle(j), 0 );
+      excitPhasor = sf_excitations(1, arrayPos, angle(j), 0 );
       [spanPsi(:,j), spanDelPsi(:,j)] = ...
         sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
     end
@@ -97,6 +97,6 @@ for nbrVecIdx = 1:length(nbrVec)
   a(:,2*(nbrVecIdx-1)+(1:2)) = [nError_trunc.', fError_trunc.' ];
 end
 
-dlmwrite('truncationErrorSigma1.txt',a, 'precision', 4);
+% dlmwrite('truncationErrorSigma1.txt',a, 'precision', 4);
 
 fprintf('\nTotal computation time = %2.4g s\n', toc(tStart));

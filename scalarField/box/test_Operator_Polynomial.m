@@ -1,7 +1,7 @@
 %%% low-rank approximation of the near field to far field operator for a
 %%% bounding sphere with compact polynomial functions
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 
 nbrElems_x = 9; % nbr of point sources for a linear array
 Nbr = 11:4:31; % nbr of coefficients to retain in the DFT-truncation
@@ -23,7 +23,7 @@ arrayPos = buildArray(1, nbrElems_x, .5, 1, .5);
   buildBox([1 1 1 1 1 1], xMin, xMax, yMin, yMax, zMin, zMax,...
   xPts, yPts, zPts, 1, 0, 0);
 [Rmag, NdotRV] = getBoxVectors(arrayPos, boxPos, boxN);
-excitPhasor = sf_Excitations(1, arrayPos, 0, 0);
+excitPhasor = sf_excitations(1, arrayPos, 0, 0);
 [psi, delPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 psi = psi.';
 delPsi = delPsi.';
@@ -131,4 +131,4 @@ xlabel('No of samples Q', 'FontSize', 12)
 ylabel('Relative Error', 'FontSize', 12)
 legend('N2F', 'Direct');
 axis tight;
-printEPS('',['errorShape',num2str(Shape)]);
+%printEPS('',['errorShape',num2str(Shape)]);

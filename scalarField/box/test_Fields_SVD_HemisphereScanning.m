@@ -1,6 +1,6 @@
 %%% test of the nf2ff transformation from a sphere 
-clear all; clc; close all;
-addpath('..\..\matlabLib');
+clear; clc; close all;
+addpath('../../matlabLib');
 tStart = tic;
 
 arrayPos = buildArray(1, 3, .5, 5, .5);
@@ -24,7 +24,7 @@ for i=1:nbrMax
   
   for j=1:length(spanningAnglesT)
     fprintf('--> angle : (%d)%.4g\n',j,angle(j));
-    excitPhasor = sf_Excitations(1, arrayPos, spanningAnglesT(j), spanningAnglesP(j) );
+    excitPhasor = sf_excitations(1, arrayPos, spanningAnglesT(j), spanningAnglesP(j) );
     [spanPsi(:,j), spanDelPsi(:,j)] = ...
       sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
   end
@@ -48,7 +48,7 @@ for i=1:nbrMax
   for p=1:length(testAnglesT)
     steering_t = testAnglesT(p);
     steering_p = testAnglesP(p);
-    excitPhasor = sf_Excitations(1, arrayPos, steering_t, steering_p );
+    excitPhasor = sf_excitations(1, arrayPos, steering_t, steering_p );
     [tPsi, tDelPsi] = sf_nfSolver(1, excitPhasor, Rmag, NdotRV);
 
     thetaFF = deg2rad(-90:1:90);
@@ -84,6 +84,6 @@ v = axis;
 axis([1 nbrMax v(3) v(4)]);
 xlabel('Tested direction number', 'FontSize', figProp.fs);
 ylabel('Relative error', 'FontSize', figProp.fs);
-printEPS('','errorPlanar');
+%printEPS('','errorPlanar');
 
 fprintf('\nTotal computation time = %2.4g s\n', toc(tStart));
