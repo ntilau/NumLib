@@ -1,4 +1,4 @@
-clear all; close all; clc;
+clear; close all; clc;
 addpath('../../matlabLib');
 %% constants
 pi=3.14159265358979323846;
