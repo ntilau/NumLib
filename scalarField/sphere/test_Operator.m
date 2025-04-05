@@ -33,7 +33,7 @@ xlabel('Sphere samples', 'FontSize', 12)
 ylabel('DFT spectrum', 'FontSize', 12)
 zlabel('Coefficient amplitude [dB]', 'FontSize', 12)
 axis tight
-printEPS('','operatorSVD');
+printPDF('','operatorSVD');
 
 
 % --- pattern plot

@@ -17,4 +17,4 @@ end
 set(gcf, 'Renderer', 'painters');
 print('-depsc', [path, filename]);
 system(['epstopdf ',filename, '.eps']);
-system(['del ',filename, '.eps']);
+system(['rm ',filename, '.eps']);
